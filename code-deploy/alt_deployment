@@ -1,0 +1,23 @@
+#!/bin/bash
+# Prerequisites: installed and working elevation application/web site as described at
+# https://github.com/GeoscienceAustralia/fsdf-elvis/blob/master/documentation/alt_deployment.md
+# Usage: copy this file to the instance and run it once, e.g. /bin/bash alt_deployment
+
+PROJECT_DIR=/home/ec2-user/elvis-positioning
+APACHE_CONFIG_DIR=/home/ec2-user/apache-configuration
+HTTP_CONFIG_DIR=/etc/httpd/conf.d
+POSITIONING_CONFIG_FILE_NAME=positioning.conf
+POSITIONING_SOURCE_DIR=$PROJECT_DIR/dist
+POSITIONING_TARGET_DIR=/var/www/positioning
+
+cd /home/ec2-user/
+git clone https://github.com/GeoscienceAustralia/elvis-positioning.git
+cd $PROJECT_DIR
+npm install
+bower install
+
+sudo cp $APACHE_CONFIG_DIR/config/$POSITIONING_CONFIG_FILE_NAME $HTTP_CONFIG_DIR
+sudo mkdir $POSITIONING_TARGET_DIR
+sudo cp -rf $POSITIONING_SOURCE_DIR/* $POSITIONING_TARGET_DIR
+
+sudo systemctl restart httpd
