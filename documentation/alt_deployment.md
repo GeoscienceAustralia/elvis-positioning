@@ -10,8 +10,8 @@ As of this writing (16/12/2020) `elevation` and `positioning` applications/web s
 
 ## Steps
 
-1. Copy the `elevation-positioning/code-deploy/alt_deployment` script to the instance.
+1. Copy the `elvis-positioning/code-deploy/alt_deploy` script to the instance.
 
-2. Run the script once, e.g. `/bin/bash alt_deployment`
+2. Run the script once, e.g. `/bin/bash alt_deploy`
 
 3. If domain names other than `positioning.fsdf.org.au` or `positioning-dev.*` are used, edit the `/etc/httpd/conf.d/positioning.conf` file.
